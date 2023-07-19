@@ -3,6 +3,7 @@
 
 #include "PongGameModeBase.h"
 #include "Kismet/GameplayStatics.h"
+#include "PongPlayer.h"
 
 void APongGameModeBase::StartGame() const
 {
@@ -29,17 +30,17 @@ void APongGameModeBase::PostLogin(APlayerController* NewPlayer)
 	Super::PostLogin(NewPlayer);
 
 	TArray<AActor*> PawnArray;
-	//UGameplayStatics::GetAllActorsOfClass(this, APongPlayer::StaticClass(), PawnArray);
+	UGameplayStatics::GetAllActorsOfClass(this, APongPlayer::StaticClass(), PawnArray);
 	if (PawnArray.Num() > 0)
 	{
 		for (AActor* Actor : PawnArray)
 		{
-			//APongPlayer* PongPlayer = Cast<APongPlayer>(Actor);
-			//if (PongPlayer && !PongPlayer->IsPawnControlled())
-			//{
-			//	NewPlayer->Possess(PongPlayer);
-			//	PongPlayer->SetOwner(NewPlayer);
-			//}
+			APongPlayer* PongPlayer = Cast<APongPlayer>(Actor);
+			if (PongPlayer && !PongPlayer->IsPawnControlled())
+			{
+				NewPlayer->Possess(PongPlayer);
+				PongPlayer->SetOwner(NewPlayer);
+			}
 		}
 	}
 	if (GetNumPlayers() == 2)
