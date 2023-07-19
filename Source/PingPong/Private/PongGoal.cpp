@@ -5,6 +5,7 @@
 #include "Components/BoxComponent.h"
 #include "PongBall.h"
 #include "Kismet/GameplayStatics.h"
+#include "PongGameState.h"
 
 // Sets default values
 APongGoal::APongGoal()
@@ -29,11 +30,11 @@ void APongGoal::Score(AActor* OverlappedActorGuid, AActor* OtherActor)
 		const auto GameState = UGameplayStatics::GetGameState(this);
 		if (GameState)
 		{
-			//const auto PongGameState = Cast<APongGameState>(GameState);
-			//if (PongGameState)
-			//{
-			//	PongGameState->IncrementScore(PlayerNumber);
-			//}
+			const auto PongGameState = Cast<APongGameState>(GameState);
+			if (PongGameState)
+			{
+				PongGameState->IncrementScore(PlayerNumber);
+			}
 		}
 	}
 }
