@@ -4,25 +4,26 @@
 #include "PongGameModeBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "PongPlayer.h"
+#include "PongBall.h"
 
 void APongGameModeBase::StartGame() const
 {
 	TArray<AActor*> BallArray;
-	//UGameplayStatics::GetAllActorsOfClass(this, APongBall::StaticClass(), BallArray);
-	//if (BallArray.Num() > 0 && IsValid(BallArray[0]))
-	//{
-	//	Cast<APongoBall>(BallArray[0])->Start();
-	//}
+	UGameplayStatics::GetAllActorsOfClass(this, APongBall::StaticClass(), BallArray);
+	if (BallArray.Num() > 0 && IsValid(BallArray[0]))
+	{
+		Cast<APongBall>(BallArray[0])->Start();
+	}
 }
 
 void APongGameModeBase::EndGame()
 {
 	TArray<AActor*> BallArray;
-	//UGameplayStatics::GetAllActorsOfClass(this, APongBall::StaticClass(), BallArray);
-	//if (BallArray.Num() > 0 && IsValid(BallArray[0]))
-	//{
-	//	Cast<APongoBall>(BallArray[0])->EndGame();
-	//}
+	UGameplayStatics::GetAllActorsOfClass(this, APongBall::StaticClass(), BallArray);
+	if (BallArray.Num() > 0 && IsValid(BallArray[0]))
+	{
+		Cast<APongBall>(BallArray[0])->GameOver();
+	}
 }
 
 void APongGameModeBase::PostLogin(APlayerController* NewPlayer)

@@ -35,15 +35,15 @@ protected:
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 	UPROPERTY(Replicated, EditAnywhere, BlueprintReadWrite, Category = "Config")
-	int PlayerOneScore{};
+	int PlayerOneScore = 0;
 
 	UPROPERTY(Replicated, EditAnywhere, BlueprintReadWrite, Category = "Config")
-	int PlayerTwoScore{};
+	int PlayerTwoScore = 0;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Config")
-	int ScoreToWin{ 3 };
+	int ScoreToWin = 3;
 
 	UPROPERTY(Replicated, EditAnywhere, BlueprintReadWrite, Category = "Config")
-		bool bGameover{ false };
+	bool bGameover = false;
 
 };

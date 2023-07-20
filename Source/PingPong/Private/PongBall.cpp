@@ -4,6 +4,8 @@
 #include "PongBall.h"
 #include "Components/BoxComponent.h"
 #include "PongPlayer.h"
+#include "PongWall.h"
+#include "PongGoal.h"
 
 // Sets default values
 APongBall::APongBall()
@@ -55,7 +57,20 @@ void APongBall::OnPaddleHit(AActor* OverlappedActor, AActor* OtherActor)
 		StaticMeshComponent->SetPhysicsLinearVelocity(NewBallLinearVelocity);
 	}
 
-	//const auto PongWall = Cast<APongWall>(OtherActor);
+	const auto PongWall = Cast<APongWall>(OtherActor);
+	if (PongWall)
+	{
+		const FVector BallLinearVelocity = StaticMeshComponent->GetPhysicsLinearVelocity();
+		const FVector NewBallLinearVelocity = FVector(BallLinearVelocity.X * -1.0f, BallLinearVelocity.Y, BallLinearVelocity.Z);
+
+		StaticMeshComponent->SetPhysicsLinearVelocity(NewBallLinearVelocity);
+	}
+
+	const auto PongGoal = Cast<APongGoal>(OtherActor);
+	if (PongGoal)
+	{
+		Restart();
+	}
 }
 
 // Called every frame

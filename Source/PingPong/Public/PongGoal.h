@@ -31,5 +31,5 @@ protected:
 	UBoxComponent* BoxComponent;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Config")
-	int PlayerNumber{};
+	int PlayerNumber = 0;
 };
