@@ -15,7 +15,7 @@ APongWall::APongWall()
 
 	BoxComponent = CreateDefaultSubobject<UBoxComponent>("BoxComponent");
 	BoxComponent->SetupAttachment(StaticMeshComponent);
-	BoxComponent->SetBoxExtent(FVector(100.0f, 2500.0f, 100.0f));
+	BoxComponent->SetBoxExtent(FVector(100.0f, 2500.0f, 200.0f));
 	BoxComponent->SetCollisionProfileName("PhysicsActor");
 
 }
