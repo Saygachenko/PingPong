@@ -15,6 +15,7 @@ void APongController::Tick(float DeltaSeconds)
 	Super::Tick(DeltaSeconds);
 }
 
+//There should have been a menu button bind.
 void APongController::SetupInputComponent()
 {
 	Super::SetupInputComponent();
@@ -22,6 +23,7 @@ void APongController::SetupInputComponent()
 	
 }
 
+// Here we find the camera on the stage and set it as a view target for the controller.
 void APongController::OnPossess(APawn* InPawn)
 {
 	Super::OnPossess(InPawn);

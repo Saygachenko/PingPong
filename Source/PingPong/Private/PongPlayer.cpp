@@ -6,7 +6,9 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Components/BoxComponent.h"
 
+
 // Sets default values
+//This is where we attach components and customize them.
 APongPlayer::APongPlayer()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
@@ -34,6 +36,7 @@ APongPlayer::APongPlayer()
 }
 
 // Called when the game starts or when spawned
+// Enable replication in BeginPlay.
 void APongPlayer::BeginPlay()
 {
 	Super::BeginPlay();
@@ -42,6 +45,7 @@ void APongPlayer::BeginPlay()
 }
 
 // Called every frame
+// In the tick, we get the Player position and set it the frame of movement.
 void APongPlayer::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -53,6 +57,7 @@ void APongPlayer::Tick(float DeltaTime)
 }
 
 // Called to bind functionality to input
+// Move button bind.
 void APongPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
@@ -60,6 +65,7 @@ void APongPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	InputComponent->BindAxis("MoveParties", this, &APongPlayer::MovePaddle);
 }
 
+// Y-axis movement logic only.
 void APongPlayer::MovePaddle(float Value)
 {
 	if (Value != 0.0f)

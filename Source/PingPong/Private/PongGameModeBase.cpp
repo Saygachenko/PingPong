@@ -7,11 +7,9 @@
 #include "PongBall.h"
 #include "PongGameHUD.h"
 
-APongGameModeBase::APongGameModeBase()
-{
-	HUDClass = UPongGameHUD::StaticClass();
-}
+DEFINE_LOG_CATEGORY_STATIC(LogGameModeBase, All, All)
 
+// The logic of starting the game if we have the ball.
 void APongGameModeBase::StartGame() const
 {
 	TArray<AActor*> BallArray;
@@ -22,6 +20,7 @@ void APongGameModeBase::StartGame() const
 	}
 }
 
+// End game logic if we have the ball.
 void APongGameModeBase::EndGame()
 {
 	TArray<AActor*> BallArray;
@@ -32,6 +31,7 @@ void APongGameModeBase::EndGame()
 	}
 }
 
+// Handling the event of a new player entering the game.
 void APongGameModeBase::PostLogin(APlayerController* NewPlayer)
 {
 	Super::PostLogin(NewPlayer);
@@ -51,11 +51,16 @@ void APongGameModeBase::PostLogin(APlayerController* NewPlayer)
 		}
 	}
 	if (GetNumPlayers() == 2)
-	{
+	{	
 		StartGame();
+	}
+	else
+	{
+		UE_LOG(LogGameModeBase, Error, TEXT("Stand by for the 2nd player!"));
 	}
 }
 
+// Handling the event of player's exit from the game.
 void APongGameModeBase::Logout(AController* Exiting)
 {
 	EndGame();

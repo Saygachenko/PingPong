@@ -6,8 +6,8 @@
 #include "Blueprint/UserWidget.h"
 #include "PongGameHUD.generated.h"
 
-class UButton;
-class UTextBlock;
+class UButton; // Decloration
+class UTextBlock; // Decloration
 
 /**
  * 
@@ -18,15 +18,16 @@ class PINGPONG_API UPongGameHUD : public UUserWidget
 	GENERATED_BODY()
 
 protected:
-	virtual bool Initialize() override;
+	virtual bool Initialize() override; // This is where the buttons are initialized, pressed not pressed.
 	
 	UFUNCTION()
-	void RestartGame();
+	void RestartGame(); // The function to call Restart the game.
 
 	UFUNCTION()
-	void QuitGame();
+	void QuitGame(); // There should have been an exit to the menu in this function.
 
-private:
+private: 
+	// Pointers to the players account, buttons.
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidget, AllowPrivateAccess = true))
 	UTextBlock* PlayerOneScore;
 

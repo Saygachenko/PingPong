@@ -5,6 +5,7 @@
 #include "Components/BoxComponent.h"
 
 // Sets default values
+// //This is where we attach components and customize them.
 APongWall::APongWall()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.

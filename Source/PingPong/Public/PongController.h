@@ -19,7 +19,7 @@ protected:
 
 	virtual void Tick(float DeltaSeconds) override;
 	
-	virtual void SetupInputComponent() override;
+	virtual void SetupInputComponent() override; // There should have been a menu button bind.
 
-	virtual void OnPossess(APawn* InPawn) override;
+	virtual void OnPossess(APawn* InPawn) override; // Here we find the camera on the stage and set it as a view target for the controller.
 };

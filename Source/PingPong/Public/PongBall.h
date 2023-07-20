@@ -20,17 +20,19 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	void Start();
-	void Restart();
-	void GameOver();
+	void Start(); // Logic of the ball movement at the start of the game.
+	void Restart(); // Logic of ball movement when restarting the game.
+	void GameOver(); // Logic of ball movement at the end of the game.
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	// Ball logic on collision with our PongPlayer.
 	UFUNCTION()
 	void OnPaddleHit(AActor* OverlappedActor, AActor* OtherActor);
 
+	// Property pointers to components and variable bit bool.
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	UStaticMeshComponent* StaticMeshComponent;
 

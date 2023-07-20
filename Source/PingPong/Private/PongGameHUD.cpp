@@ -5,6 +5,7 @@
 #include "Components/Button.h"
 #include "PongPlayerState.h"
 
+// This is where the buttons are initialized, pressed not pressed.
 bool UPongGameHUD::Initialize()
 {
 	bool const bSuccess = Super::Initialize();
@@ -28,11 +29,13 @@ bool UPongGameHUD::Initialize()
 	return true;
 }
 
+// The function to call Restart the game.
 void UPongGameHUD::RestartGame()
 {
 	GetOwningPlayer()->GetPlayerState<APongPlayerState>()->SetPlayAgain(true);
 }
 
+// There should have been an exit to the menu in this function.
 void UPongGameHUD::QuitGame()
 {
 }

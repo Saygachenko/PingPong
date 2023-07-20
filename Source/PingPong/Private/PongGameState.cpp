@@ -9,6 +9,7 @@
 
 DEFINE_LOG_CATEGORY_STATIC(LogPongGameState, All, All);
 
+// Game Restart Logic.
 void APongGameState::RestartGame_Implementation()
 {
 	int PlayersReady = 0;
@@ -43,6 +44,7 @@ void APongGameState::RestartGame_Implementation()
 	}
 }
 
+// Logic for getting points.
 void APongGameState::IncrementScore_Implementation(int PlayerNumber)
 {
 	if (PlayerNumber == 1)
@@ -74,6 +76,7 @@ void APongGameState::IncrementScore_Implementation(int PlayerNumber)
 
 }
 
+// Replication of first player, second player and end of game scores.
 void APongGameState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);

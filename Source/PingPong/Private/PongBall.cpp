@@ -8,6 +8,7 @@
 #include "PongGoal.h"
 
 // Sets default values
+// //This is where we attach components and customize them.
 APongBall::APongBall()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
@@ -44,6 +45,7 @@ void APongBall::BeginPlay()
 	OnActorBeginOverlap.AddDynamic(this, &APongBall::OnPaddleHit);
 }
 
+// Ball logic on collision with our PongPlayer.
 void APongBall::OnPaddleHit(AActor* OverlappedActor, AActor* OtherActor)
 {
 	const auto PongPlayer = Cast<APongPlayer>(OtherActor);
@@ -80,6 +82,7 @@ void APongBall::Tick(float DeltaTime)
 
 }
 
+// Logic of the ball movement at the start of the game.
 void APongBall::Start()
 {
 	bGameover = false;
@@ -87,12 +90,14 @@ void APongBall::Start()
 	StaticMeshComponent->SetPhysicsLinearVelocity(FVector((FMath::RandBool() ? 1.0f : -1.0f) * 2000.0f, FMath::RandRange(-300.0f, 300.0f), 0.0f));
 }
 
+// Logic of ball movement when restarting the game.
 void APongBall::Restart()
 {
 	SetActorLocation(FVector::ZeroVector);
 	StaticMeshComponent->SetPhysicsLinearVelocity(FVector((FMath::RandBool() ? 1.0f : -1.0f) * 2000.0f, FMath::RandRange(-300.0f, 300.0f), 0.0f));
 }
 
+// Logic of ball movement at the end of the game.
 void APongBall::GameOver()
 {
 	bGameover = true;

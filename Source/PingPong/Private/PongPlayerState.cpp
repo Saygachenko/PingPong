@@ -6,6 +6,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "PongGameState.h"
 
+// There's a logic to restarting the game.
 void APongPlayerState::SetPlayAgain_Implementation(bool bInPlayAgain)
 {
 	bPlayAgain = bInPlayAgain;
@@ -21,6 +22,7 @@ void APongPlayerState::SetPlayAgain_Implementation(bool bInPlayAgain)
 	}
 }
 
+// This is where we replicate bPlayAgain.
 void APongPlayerState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);

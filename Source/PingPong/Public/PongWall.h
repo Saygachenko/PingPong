@@ -6,7 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "PongWall.generated.h"
 
-class UBoxComponent;
+class UBoxComponent; // Decloration
 
 UCLASS()
 class PINGPONG_API APongWall : public AActor
@@ -15,12 +15,13 @@ class PINGPONG_API APongWall : public AActor
 	
 public:	
 	// Sets default values for this actor's properties
-	APongWall();
+	APongWall(); // Designer.
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	// Component pointers.
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	UStaticMeshComponent* StaticMeshComponent;
 
