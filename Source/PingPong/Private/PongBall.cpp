@@ -47,12 +47,12 @@ void APongBall::BeginPlay()
 void APongBall::OnPaddleHit(AActor* OverlappedActor, AActor* OtherActor)
 {
 	const auto PongPlayer = Cast<APongPlayer>(OtherActor);
-	if (PongPlayer && PongPlayer->IsValidLowLevel())
+	if (PongPlayer )
 	{
 		const FVector BallLinearVelocity = StaticMeshComponent->GetPhysicsLinearVelocity();
 		const FVector PaddleLinearVelocity = PongPlayer->GetStaticMeshComponent()->GetPhysicsLinearVelocity();
 
-		const FVector NewBallLinearVelocity = FVector(PaddleLinearVelocity.X + FMath::RandRange(-1000.0f, 1000.0f), BallLinearVelocity.Y * -1.0f, BallLinearVelocity.Z);
+		const FVector NewBallLinearVelocity = FVector(BallLinearVelocity.X * -1.0f, PaddleLinearVelocity.Y + FMath::RandRange(-1000.0f, 1000.0f), BallLinearVelocity.Z);
 
 		StaticMeshComponent->SetPhysicsLinearVelocity(NewBallLinearVelocity);
 	}
@@ -61,7 +61,7 @@ void APongBall::OnPaddleHit(AActor* OverlappedActor, AActor* OtherActor)
 	if (PongWall)
 	{
 		const FVector BallLinearVelocity = StaticMeshComponent->GetPhysicsLinearVelocity();
-		const FVector NewBallLinearVelocity = FVector(BallLinearVelocity.X * -1.0f, BallLinearVelocity.Y, BallLinearVelocity.Z);
+		const FVector NewBallLinearVelocity = FVector(BallLinearVelocity.X, BallLinearVelocity.Y * -1.0f, BallLinearVelocity.Z);
 
 		StaticMeshComponent->SetPhysicsLinearVelocity(NewBallLinearVelocity);
 	}
@@ -84,13 +84,13 @@ void APongBall::Start()
 {
 	bGameover = false;
 	SetActorLocation(FVector::ZeroVector);
-	StaticMeshComponent->SetPhysicsLinearVelocity(FVector(FMath::RandRange(-300.0f, 300.0f), (FMath::RandBool() ? 1.0f : -1.0f) * 2000.0f, 0.0f));
+	StaticMeshComponent->SetPhysicsLinearVelocity(FVector((FMath::RandBool() ? 1.0f : -1.0f) * 2000.0f, FMath::RandRange(-300.0f, 300.0f), 0.0f));
 }
 
 void APongBall::Restart()
 {
 	SetActorLocation(FVector::ZeroVector);
-	StaticMeshComponent->SetPhysicsLinearVelocity(FVector(FMath::RandRange(-300.0f, 300.0f), (FMath::RandBool() ? 1.0f : -1.0f) * 2000.0f, 0.0f));
+	StaticMeshComponent->SetPhysicsLinearVelocity(FVector((FMath::RandBool() ? 1.0f : -1.0f) * 2000.0f, FMath::RandRange(-300.0f, 300.0f), 0.0f));
 }
 
 void APongBall::GameOver()

@@ -15,6 +15,8 @@ class PINGPONG_API APongGameModeBase : public AGameModeBase
 	GENERATED_BODY()
 
 public:
+	APongGameModeBase();
+
 	void StartGame() const;
 	void EndGame();
 

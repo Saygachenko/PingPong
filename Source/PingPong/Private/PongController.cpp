@@ -28,7 +28,7 @@ void APongController::OnPossess(APawn* InPawn)
 
 	TArray<AActor*> CameraArray;
 	UGameplayStatics::GetAllActorsOfClass(this, ACameraActor::StaticClass(), CameraArray);
-	if (CameraArray.Num() > 0 && CameraArray[0]->IsValidLowLevel())
+	if (CameraArray.Num() > 0)
 	{
 		SetViewTargetWithBlend(CameraArray[0]);
 	}

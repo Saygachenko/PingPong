@@ -5,6 +5,12 @@
 #include "Kismet/GameplayStatics.h"
 #include "PongPlayer.h"
 #include "PongBall.h"
+#include "PongGameHUD.h"
+
+APongGameModeBase::APongGameModeBase()
+{
+	HUDClass = UPongGameHUD::StaticClass();
+}
 
 void APongGameModeBase::StartGame() const
 {

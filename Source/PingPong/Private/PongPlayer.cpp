@@ -28,7 +28,7 @@ APongPlayer::APongPlayer()
 	BoxComponent = CreateDefaultSubobject<UBoxComponent>("BoxComponent");
 	BoxComponent->SetupAttachment(GetRootComponent());
 	BoxComponent->SetCollisionProfileName("PhysicsActor");
-	BoxComponent->SetBoxExtent(FVector(175.0f, 50.0f, 50.0f));
+	BoxComponent->SetBoxExtent(FVector(50.0f, 175.0f, 50.0f));
 	
 
 }
@@ -46,9 +46,9 @@ void APongPlayer::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (GetActorLocation().X < -1499.0f || GetActorLocation().X > 1499.0f)
+	if (GetActorLocation().Y < -650.0f || GetActorLocation().Y > 650.0f)
 	{
-		SetActorLocation(FVector(FMath::Clamp(GetActorLocation().X, -1500.0f, 1500.0f), GetActorLocation().Y, GetActorLocation().Z));
+		SetActorLocation(FVector(GetActorLocation().X, FMath::Clamp(GetActorLocation().Y, -649.0f, 649.0f), GetActorLocation().Z));
 	}
 }
 
@@ -57,14 +57,14 @@ void APongPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	InputComponent->BindAxis("MoveUp", this, &APongPlayer::MovePaddle);
+	InputComponent->BindAxis("MoveParties", this, &APongPlayer::MovePaddle);
 }
 
 void APongPlayer::MovePaddle(float Value)
 {
 	if (Value != 0.0f)
 	{
-		AddMovementInput(FVector(1.0f, 0.0f, 0.0f), Value, true);
+		AddMovementInput(FVector(0.0f, 1.0f, 0.0f), Value, true);
 	}
 }
 
